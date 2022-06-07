@@ -1,0 +1,11 @@
+tasks:
+- init: |
+    go build -o build
+  command: ./build/stop_horny
+
+ports:
+- port: 8080
+
+vscode:
+  extensions:
+    - golang.go
