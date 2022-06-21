@@ -1,9 +1,9 @@
 tasks:
 - init: |
-    mkdir -p build
-    go build -o build
+    mkdir -p app
+    go build -o app/
   command: |
-    ./build/stop_horny
+    ./app/stop_horny
 
 ports:
 - port: 8080
