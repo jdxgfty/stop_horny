@@ -21,8 +21,13 @@ func main() {
 			w.Write([]byte("an unknown error occured"))
 			return
 		}
-		w.Header().Set("Content-Disposition", `inline; filename="stop_horny.jpg"`)
-		w.Header().Set("Content-Length", fmt.Sprint(len(img)))
+		headers := map[string]string{
+			"Content-Disposition": `inline; filename="stop_horny.jpg"`,
+			"Content-Length":      fmt.Sprint(len(img)),
+		}
+		for k, v := range headers {
+			w.Header().Set(k, v)
+		}
 		w.Write(img)
 	})
 
