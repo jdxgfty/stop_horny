@@ -7,10 +7,12 @@ import (
 	"os"
 )
 
+var ALLOWED_HEADERS = []string{"GET", "HEAD"}
+
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != "GET" && r.Method != "HEAD" {
+		if !contains(ALLOWED_HEADERS, r.Method) {
 			w.Header().Set("Allow", "GET, HEAD")
 			w.WriteHeader(http.StatusMethodNotAllowed)
 			return
@@ -33,4 +35,13 @@ func main() {
 	})
 
 	log.Fatalln(http.ListenAndServe(":8080", mux))
+}
+
+func contains(array []string, value string) bool {
+	for _, v := range array {
+		if v == value {
+			return true
+		}
+	}
+	return false
 }
