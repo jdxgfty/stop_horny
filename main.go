@@ -34,6 +34,7 @@ func main() {
 		w.Write(img)
 	})
 
+	log.Println("Starting server")
 	log.Fatalln(http.ListenAndServe(":8080", mux))
 }
 
