@@ -1,3 +1,3 @@
 # stop_horny
 
-Idk
+This branch uses `gin` instead of `net/http`
