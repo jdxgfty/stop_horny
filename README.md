@@ -1,3 +1,3 @@
 # stop_horny
 
-Idk
+This branch uses `echo` instead of `net/http`
