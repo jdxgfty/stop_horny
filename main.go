@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
+	"slices"
 
 	"embed"
 
@@ -18,7 +20,9 @@ var imgFS embed.FS
 func main() {
 	e := echo.New()
 
-	e.Use(middleware.Logger())
+	if slices.Contains(os.Args, "-l") {
+		e.Use(middleware.Logger())
+	}
 	e.Use(middleware.Recover())
 
 	e.Match(ALLOWED_HEADERS, "/*.", func(c echo.Context) error {
